@@ -1,10 +1,11 @@
 require("module-alias/register");
-import { identity } from "@utils/generics/identity";
-import { loggingIdentity } from "@utils/generics/loggingIdentity";
+import { GenericClass } from "@models/generics/GenericNumber";
 import {
   GenericIdentityFn,
   GenericIdentityFn2,
-} from "./typings/generics/genericIdentityFn";
+} from "@typings/generics/genericIdentityFn";
+import { identity } from "@utils/generics/identity";
+import { loggingIdentity } from "@utils/generics/loggingIdentity";
 
 // Example usage of the identity function with different types
 const myIdentityNumber = identity(2); // compiler infers the type of myIdentity as number
@@ -37,3 +38,12 @@ console.log(myIdentityGeneric4(3.14)); // Output: 3.14
 /* Error, because we specified that the type parameter is number, so it cannot accept a string.
   console.log(myIdentityGeneric4("Not a number"));
 */
+
+// Example of Generic Types with Classes (Genericc Classes)
+let myGenericNumber = new GenericClass<number>(0, (x, y) => x + y);
+let MyGenericString = new GenericClass<string>("", (x, y) => x + y);
+
+console.log(`myGenericNumber add function: ${myGenericNumber.add(7, 8)}`); // Output: 15
+console.log(
+  `MyGenericString add function: ${MyGenericString.add("Hello, ", "TypeScript!")}`,
+); // Output: Hello, TypeScript!

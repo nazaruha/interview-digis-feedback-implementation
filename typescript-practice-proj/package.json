@@ -15,7 +15,8 @@
   },
   "_moduleAliases": {
     "@utils": "out/utils",
-    "@/typings": "out/typings"
+    "@typings": "out/typings",
+    "@models": "out/models"
   },
   "devDependencies": {
     "@types/node": "^25.5.0"
