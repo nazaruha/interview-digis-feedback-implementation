@@ -14,7 +14,8 @@
     "module-alias": "^2.3.4"
   },
   "_moduleAliases": {
-    "@utils": "out/utils"
+    "@utils": "out/utils",
+    "@/typings": "out/typings"
   },
   "devDependencies": {
     "@types/node": "^25.5.0"
