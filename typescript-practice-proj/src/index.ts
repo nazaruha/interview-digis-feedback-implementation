@@ -4,6 +4,7 @@ import {
   GenericIdentityFn,
   GenericIdentityFn2,
 } from "@typings/generics/genericIdentityFn";
+import { constraintLoggingIdentity } from "@utils/generics/constraintLoggingIdentity";
 import { identity } from "@utils/generics/identity";
 import { loggingIdentity } from "@utils/generics/loggingIdentity";
 
@@ -47,3 +48,13 @@ console.log(`myGenericNumber add function: ${myGenericNumber.add(7, 8)}`); // Ou
 console.log(
   `MyGenericString add function: ${MyGenericString.add("Hello, ", "TypeScript!")}`,
 ); // Output: Hello, TypeScript!
+
+// Example of Generic Constraints
+const myConstraintLoggingIdentity = constraintLoggingIdentity({
+  length: 10,
+  value: "Hello, Constraints!",
+}); // Output: 10
+// Error, because the argument does not satisfy the constraint of having a length property.
+// constraintLoggingIdentity(42);
+
+console.log(myConstraintLoggingIdentity); // Output: { length: 10, value: "Hello, Constraints!" }
