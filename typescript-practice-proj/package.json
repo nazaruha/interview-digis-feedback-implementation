@@ -1,0 +1,22 @@
+{
+  "name": "typescript-practice-proj",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node ./out/index.js"
+  },
+  "dependencies": {
+    "module-alias": "^2.3.4"
+  },
+  "_moduleAliases": {
+    "@utils": "out/utils"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0"
+  }
+}
