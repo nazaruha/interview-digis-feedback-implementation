@@ -11,6 +11,7 @@
     "dev": "node ./out/index.js"
   },
   "dependencies": {
+    "file-system": "^2.2.2",
     "module-alias": "^2.3.4"
   },
   "_moduleAliases": {
