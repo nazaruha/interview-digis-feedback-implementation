@@ -101,6 +101,7 @@ if (PetService.isFish(pet)) {
   pet.fly();
 }
 
+// Example of using type guard functions in array filtering to narrow down the types of elements in an array
 const pets: (Fish | Bird)[] = [getSmallPet(), getSmallPet(), getSmallPet()];
 const fishes = pets.filter(PetService.isFish); // TypeScript infers the type of fishes as Fish[] because of the type guard function
 const birds = pets.filter(PetService.isBird); // TypeScript infers the type of birds as Bird[] because of the type guard function
@@ -112,7 +113,44 @@ pets.forEach((pet) => {
   }
 });
 
+// typeof type guards
 console.log(TypeService.isString("Hello, TypeScript!")); // Output: true
 console.log(TypeService.isString(42)); // Output: false
 console.log(TypeService.isNumber(42)); // Output: true
 console.log(TypeService.isNumber("Not a number")); // Output: false
+
+// instanceof type guards
+pets.forEach((pet) => {
+  if (pet instanceof Fish) {
+    pet.swim();
+  } else if (pet instanceof Bird) {
+    pet.fly();
+  } else {
+    console.log("Unknown pet type");
+  }
+});
+
+// null and undefined type guards
+let a = 2;
+//a = null; // Error, because a is of type number and cannot be assigned null
+let b: string | null = "Hello, TypeScript!";
+b = null; // No error, because b can be of type string or null
+//b = undefined; // Error, because b cannot be assigned undefined
+let c: number | undefined | null = 23;
+c = 4;
+c = null;
+c = undefined; // No error, because c can be of type number, null, or undefined
+
+// ? automatically adds `| undefined` to the y parameter's type
+function f(x: number, y?: number) {
+  return x + (y ?? 0); // using the nullish coalescing operator to provide a default value for y if it is undefined
+}
+
+f(2, 3); // Output: 5
+f(2); // Output: 2, y === undefined, so the nullish coalescing operator provides a default value of 0 for y
+f(2, undefined); // Output: 2, y === undefined, so the nullish coalescing operator provides a default value of 0 for y
+//f(2, null); // Argument of type 'null' is not assignable to parameter of type 'number | undefined'.
+
+function f1(stringOrNull: string | null) {
+  return stringOrNull ?? "Default string"; // using the nullish coalescing operator to provide a default value if stringOrNull is null or undefined
+}
