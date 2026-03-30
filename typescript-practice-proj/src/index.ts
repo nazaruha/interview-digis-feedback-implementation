@@ -14,6 +14,7 @@ import { identity } from "@utils/generics/identity";
 import { loggingIdentity } from "@utils/generics/loggingIdentity";
 import { getSmallPet } from "@utils/typeGuards/getSmallPet";
 import { PetService } from "./services/PetService";
+import { TypeService } from "./services/TypeService";
 import { UserService } from "./services/UserService";
 
 // GENERICS
@@ -110,3 +111,8 @@ pets.forEach((pet) => {
     pet.fly();
   }
 });
+
+console.log(TypeService.isString("Hello, TypeScript!")); // Output: true
+console.log(TypeService.isString(42)); // Output: false
+console.log(TypeService.isNumber(42)); // Output: true
+console.log(TypeService.isNumber("Not a number")); // Output: false
