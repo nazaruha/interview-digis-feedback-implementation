@@ -13,6 +13,8 @@ import { identity } from "@utils/generics/identity";
 import { loggingIdentity } from "@utils/generics/loggingIdentity";
 import { UserService } from "./services/UserService";
 
+// GENERICS
+
 // Example usage of the identity function with different types
 const myIdentityNumber = identity(2); // compiler infers the type of myIdentity as number
 const myIdentityString = identity("Hello, TypeScript!"); // compiler infers the type of myIdentity as string
