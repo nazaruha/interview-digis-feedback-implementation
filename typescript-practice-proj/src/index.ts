@@ -11,6 +11,7 @@ import { createClassInstance } from "@utils/generics/createClassInstance";
 import { getProperty } from "@utils/generics/getProperty";
 import { identity } from "@utils/generics/identity";
 import { loggingIdentity } from "@utils/generics/loggingIdentity";
+import { getSmallPet } from "@utils/typeGuards/getSmallPet";
 import { UserService } from "./services/UserService";
 
 // GENERICS
@@ -88,3 +89,11 @@ console.log(getProperty(x, "a")); // Output: 1
 console.log(createClassInstance(Lion).keeper.nametag); // Output: Mikle
 console.log(createClassInstance(Bee).keeper.hasMask); // Output: true
 console.log(createClassInstance(Bee).numLegs); // Output: 6
+
+// TYPE GUARDS
+const pet = getSmallPet();
+if ("swim" in pet) {
+  pet.swim();
+} else {
+  pet.fly();
+}
