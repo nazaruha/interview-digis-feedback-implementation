@@ -4,9 +4,12 @@ import {
   GenericIdentityFn,
   GenericIdentityFn2,
 } from "@typings/generics/genericIdentityFn";
+import { User } from "@typings/user";
 import { constraintLoggingIdentity } from "@utils/generics/constraintLoggingIdentity";
+import { getProperty } from "@utils/generics/getProperty";
 import { identity } from "@utils/generics/identity";
 import { loggingIdentity } from "@utils/generics/loggingIdentity";
+import { UserService } from "./services/UserService";
 
 // Example usage of the identity function with different types
 const myIdentityNumber = identity(2); // compiler infers the type of myIdentity as number
@@ -58,3 +61,21 @@ const myConstraintLoggingIdentity = constraintLoggingIdentity({
 // constraintLoggingIdentity(42);
 
 console.log(myConstraintLoggingIdentity); // Output: { length: 10, value: "Hello, Constraints!" }
+
+// Example of using the getProperty function with generic constraints to safely access properties of an object
+let x = { a: 1, b: 2, c: 3, d: 4 };
+console.log(getProperty(x, "a")); // Output: 1
+// Error, because 'm' does not exist in x
+// console.log(getProperty(x, "m"));
+(async () => {
+  try {
+    const users: User[] = await UserService.getUsers();
+    for (let i = 0; i < users.length; i++) {
+      console.log(
+        `#${i + 1}:\n\tName: ${getProperty(users[i], "name")}\n\tAge: ${getProperty(users[i], "age")}`,
+      );
+    }
+  } catch (error) {
+    console.log(error);
+  }
+})();
