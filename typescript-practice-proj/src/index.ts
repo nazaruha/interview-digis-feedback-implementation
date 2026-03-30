@@ -1,11 +1,13 @@
 require("module-alias/register");
 import { GenericClass } from "@models/generics/GenericNumber";
+import { Bee, Lion } from "@models/generics/Zoo";
 import {
   GenericIdentityFn,
   GenericIdentityFn2,
 } from "@typings/generics/genericIdentityFn";
 import { User } from "@typings/user";
 import { constraintLoggingIdentity } from "@utils/generics/constraintLoggingIdentity";
+import { createClassInstance } from "@utils/generics/createClassInstance";
 import { getProperty } from "@utils/generics/getProperty";
 import { identity } from "@utils/generics/identity";
 import { loggingIdentity } from "@utils/generics/loggingIdentity";
@@ -79,3 +81,8 @@ console.log(getProperty(x, "a")); // Output: 1
     console.log(error);
   }
 })();
+
+// Example of using the createClassInstance function with generic constraints to create instances of classes that extend a base class
+console.log(createClassInstance(Lion).keeper.nametag); // Output: Mikle
+console.log(createClassInstance(Bee).keeper.hasMask); // Output: true
+console.log(createClassInstance(Bee).numLegs); // Output: 6
